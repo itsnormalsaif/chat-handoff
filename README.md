@@ -1,44 +1,56 @@
 # chat-handoff
 
-A Claude Skill that summarizes a conversation into a short recap and a copy-pasteable "continuation prompt," so you can resume the same context in a new chat, hand it off to someone else, or archive it before it gets too long.
+A Claude Skill that turns any conversation into a concise recap and a
+copy-pasteable continuation prompt, making it easy to resume in a new
+chat, hand off to someone else, or archive before the conversation
+becomes too long.
 
 ## What it does
 
-When triggered, the skill:
+When triggered, chat-handoff:
 
-1. Reviews the current conversation (goal, key decisions, constraints/preferences, what's been produced, what's still open)
-2. Writes a short, plain-language **summary** for you to read
-3. Drafts a **continuation prompt** — written in your voice, ready to paste as the first message of a new chat — that gives a fresh Claude enough context to keep going without having seen the original thread
+-   Reviews the current conversation, including its goal, key decisions,
+    constraints, preferences, completed work, and any remaining tasks.
+-   Produces a concise, plain-language summary of the conversation.
+-   Generates a copy-pasteable continuation prompt that captures all the
+    essential context, allowing a new Claude chat to continue seamlessly
+    without access to the original conversation.
 
 ## Why
 
-Long conversations get unwieldy: context limits, slow scrolling, or you just want a clean slate without losing the thread. `chat-handoff` compresses everything that matters into something portable.
+Long conversations eventually become difficult to navigate, approach
+context limits, or simply benefit from a fresh start. chat-handoff
+condenses everything important into a portable summary, so you can
+continue your work without losing context.
 
-**Use cases**
-- Starting a fresh chat once one gets long or close to a length limit
-- Handing a task off to a coworker or friend to continue in their own chat
-- Archiving a conversation's state before closing it, in case you resume later
-- Splitting a meandering conversation into a focused new one on just the current thread
-- Saving context before switching devices or apps
+## Use cases
+
+-   Continue a long conversation in a fresh chat.
+-   Hand a project off to a colleague, teammate, or friend.
+-   Archive a conversation before closing it.
+-   Split a broad discussion into a focused new thread.
+-   Preserve context before switching devices or applications.
 
 ## Usage
 
-Just ask, in plain language, e.g.:
+Simply ask in plain language, for example:
 
-- "Summarize this chat"
-- "Give me a prompt to continue this conversation"
-- "Recap this thread so I can start fresh"
-- "Wrap this up before I lose context"
+-   "Summarize this chat."
+-   "Give me a prompt to continue this conversation."
+-   "Recap this thread so I can start fresh."
+-   "Wrap this up before I lose context."
 
-The skill triggers automatically on requests like these — no special syntax needed.
+The skill automatically activates when it recognises requests like
+these---no special syntax required.
 
-## Output format
+## Output
 
-```
-[Short summary in plain text]
+The skill returns:
 
-**Continuation prompt:**
-​```
+1.  A concise summary of the conversation.
+2.  A copy-pasteable continuation prompt in its own fenced code block.
+
+``` text
 I'm continuing an earlier conversation. Here's the context:
 
 **What this is about:** ...
@@ -46,24 +58,33 @@ I'm continuing an earlier conversation. Here's the context:
 **What's been done:** ...
 **Current state:** ...
 **Next step:** ...
-​```
 ```
 
-The continuation prompt is kept in its own fenced code block so it's a single tap-and-hold or click away from being copied.
+Keeping the continuation prompt in a separate code block makes it easy
+to copy directly into a new conversation.
 
 ## Installation
 
-Download `chat-handoff.skill` and open it in Claude — click **Save skill** to install it to your account.
+Download `chat-handoff.skill`, open it in Claude, and select **Save
+skill** to install it.
 
 ## Structure
 
-```
+``` text
 chat-handoff/
-└── SKILL.md   — skill instructions (name, trigger description, and step-by-step behavior)
+└── SKILL.md
 ```
+
+`SKILL.md` contains the skill's name, trigger description, and
+behaviour.
 
 ## Notes
 
-- Uploaded and generated files don't automatically carry over into a new conversation — the skill flags any files/artifacts by name so you know to re-attach them if needed.
-- If a conversation covers multiple unrelated topics, the skill will ask which thread you want included rather than guessing.
-- Worth a quick glance at the generated prompt before sharing it with someone else, since it will contain whatever was discussed.
+-   Uploaded files and generated artefacts are not automatically
+    available in a new conversation. The skill lists them so you know
+    what needs to be reattached.
+-   If multiple unrelated topics are being discussed, the skill asks
+    which thread should be included instead of making assumptions.
+-   Review the generated continuation prompt before sharing it, as it
+    may contain information from the conversation that you don't intend
+    to share.
